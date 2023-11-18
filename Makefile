@@ -1,5 +1,6 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
+KUBECONFIG := ${HOME}/.kube/config
 
 ## --------------------------------------
 ## Help
@@ -24,3 +25,11 @@ install-kind: install-carvel ## Install kind and Kapp CRDs
 	./scripts/kind-with-registry.sh; \
 	bin/kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
 
+## --------------------------------------
+## Running
+## --------------------------------------
+##@ running:
+
+.PHONY: run-local
+run-local:  ## Run server as a local binary
+	go run . --kubeconfig=$(KUBECONFIG)
