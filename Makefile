@@ -33,3 +33,11 @@ install-kind: install-carvel ## Install kind and Kapp CRDs
 .PHONY: run-local
 run-local:  ## Run server as a local binary
 	go run . --kubeconfig=$(KUBECONFIG)
+
+.PHONY: react-dev
+react-dev:  ## Run local frontend server
+	cd attestation; npm run start
+
+.PHONY: react-build
+react-build:  ## Run local frontend server
+	cd attestation; npm run build
